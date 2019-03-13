@@ -28,9 +28,20 @@ class TeachersController < ApplicationController
   def create
     @subjects = Subject.all
 
-    params["teacher"]["subject_string"] = params["teacher"]["subject_string"].select{|str| !str.empty?}.map{|index| @subjects.find(index).name}.join(", ")
+    subject_array = params["teacher"]["subject_string"].select{|str| !str.empty?}.map{|index| @subjects.find(index).name}
+
+
+    params["teacher"]["subject_string"] = subject_array.join(", ")
+
 
     @teacher = Teacher.new(teacher_params)
+
+    subject_array.each do |new_subject_name|
+      new_subject = TeacherSubject.new
+      new_subject.teacher = @teacher
+      new_subject.subject = @subjects.where(:name => new_subject_name).first
+      new_subject.save
+    end
 
     respond_to do |format|
       if @teacher.save
