@@ -7,7 +7,7 @@
     <% dow_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
     <%= f.association :teacher, required: true %>
     <%= f.input :dow, required: true, collection: 0..6, :label_method => lambda{|dow| dow_names[dow]}, label:"Day of week" %>
-    <%= f.input :start_time, as: :string, required: true, input_html:{ class: "timePicker" }, label: "Start Time: (10:00am~7:00pm)" %>
+    <%= f.input :start_time, as: :string, required: true, input_html:{ class: "timePicker" }, label: "Start Time" %>
     <%= f.input :state, input_html:{ class: "profileLanguageSelect2" }, required: true, collection: ["Available", "Occupied"]%>
     <%= f.input :footnote, as: :text, :input_html => {:style => 'width: 100%', :rows => 5} %>
   </div>

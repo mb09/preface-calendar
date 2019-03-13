@@ -6,9 +6,7 @@ const initDatePicker = () =>{
     altInput: true,
     enableTime: true,
     noCalendar: true,
-    dateFormat: "H:i",
-    minTime: "10:00",
-    maxTime: "19:00"
+    dateFormat: "H:i"
   })
 }
 
