@@ -4,18 +4,18 @@
 
     <% @teachers.each do |teacher| %>
       <div class="calendar_teacher">
-        <h3><%= teacher.name %></h3>
 
-        <div class="calendar_subject_container">Subjects:
-        <% @teacher_subjects.select{|a| a.teacher == teacher}.each do |subject| %>
-          <div class="calendar_subject">
-            <%= subject.subject.name %>
-          </div>
-
-        <% end %>
+        <div class="calendar_subject_container">
+          <h3 class="calendar_teacher_big_text"><%= teacher.name %></h3>
+          <% @teacher_subjects.select{|a| a.teacher == teacher}.each do |subject| %>
+            <div class="calendar_subject">
+              <%= subject.subject.name %>
+            </div>
+          <% end %>
         </div>
 
-        <h5>Timeslots: </h5>
+        <div class="spacer"></div>
+
         <div class="calendar_week">
 
           <% teacher_timeslots = @timeslots.select{|a| a.teacher == teacher} %>
@@ -28,7 +28,7 @@
             <div class="calendar_day">
 
               <% teacher_timeslots_day = teacher_timeslots.select{|a| a.dow == dow} %>
-              <h5><%= @dow_names[dow] %></h5>
+              <h5 class="font-strong"><%= @dow_names[dow] %></h5>
 
 
               <% teacher_timeslots_day.each do |timeslot| %>
@@ -42,19 +42,15 @@
                 <% end %>
 
                 <%= link_to edit_calendar_timeslot_path(timeslot) do %>
-                  <div class= "calendar_timeslot <%= timeslot.state == "Available" ? "available" : "occupied" %>"><%= timeslot.start_time.strftime("%I:%M%p") %> ~ <%= end_time.strftime("%I:%M%p") %></div>
+                  <div class= "calendar_timeslot <%= timeslot.state == "Available" ? "available" : "occupied" %>"><%= timeslot.start_time.strftime("%I:%M%p") %><br>~<br><%= end_time.strftime("%I:%M%p") %></div>
                 <% end %>
               <% end %>
-
             </div>
-
-
           <% end %>
-
 
         </div>
         <div class="spacer"></div>
-        <h4>Available timeslots : <%= "#{available_timeslot}/#{total_timeslot}" %></h4>
+        <h4 class="calendar_teacher_big_text">Available timeslots : <%= "#{available_timeslot}/#{total_timeslot}" %></h4>
       </div>
     <% end %>
   </div>
