@@ -6,6 +6,6 @@ class CalendarController < ApplicationController
     @teachers = Teacher.all
     @teacher_subjects = TeacherSubject
 
-    @dow_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    @dow_names = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
   end
 end

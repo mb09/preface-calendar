@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :timeslots
+  resources :timeslots do
+    member do
+      get 'edit_calendar', to: "timeslots#edit_calendar", as: 'edit_calendar'
+      patch 'update_calendar', to: "timeslots#update_calendar", as: 'update_calendar'
+    end
+  end
+
   resources :teacher_subjects
   resources :subjects
   resources :teachers

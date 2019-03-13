@@ -20,7 +20,7 @@
 
       <% for dow in 0..6 do %>
 
-        <div style="width: 10%; background-color: #f8f8f8; text-align: center; padding: 5px 5px;">
+        <div style="width: 14%; background-color: #f8f8f8; text-align: center; padding: 5px 5px;">
 
           <% teacher_timeslots_day = teacher_timeslots.select{|a| a.dow == dow} %>
           <h5><%= @dow_names[dow] %></h5>
@@ -29,7 +29,7 @@
             <!-- calculate end time, 75minute for a lesson -->
             <% end_time = timeslot.start_time + 75.minute %>
 
-            <%= link_to edit_timeslot_path(timeslot) do %>
+            <%= link_to edit_calendar_timeslot_path(timeslot) do %>
               <div style="background-color: #fff; margin-bottom: 5px; border: 1px solid #ccc"><%= timeslot.start_time.strftime("%I:%M%p") %> ~ <%= end_time.strftime("%I:%M%p") %></div>
             <% end %>
           <% end %>

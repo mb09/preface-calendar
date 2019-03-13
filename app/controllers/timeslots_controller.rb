@@ -1,5 +1,5 @@
 class TimeslotsController < ApplicationController
-  before_action :set_timeslot, only: [:show, :edit, :update, :destroy]
+  before_action :set_timeslot, only: [:show, :edit, :update, :edit_calendar, :update_calendar, :destroy]
 
   # GET /timeslots
   # GET /timeslots.json
@@ -24,6 +24,10 @@ class TimeslotsController < ApplicationController
   def edit
   end
 
+  # GET /timeslots/1/edit
+  def edit_calendar
+  end
+
   # POST /timeslots
   # POST /timeslots.json
   def create
@@ -31,7 +35,7 @@ class TimeslotsController < ApplicationController
 
     respond_to do |format|
       if @timeslot.save
-        format.html { redirect_to @timeslot, notice: 'Timeslot was successfully created.' }
+        format.html { redirect_to timeslots_path, notice: 'Timeslot was successfully created.' }
         format.json { render :show, status: :created, location: @timeslot }
       else
         format.html { render :new }
@@ -45,7 +49,21 @@ class TimeslotsController < ApplicationController
   def update
     respond_to do |format|
       if @timeslot.update(timeslot_params)
-        format.html { redirect_to @timeslot, notice: 'Timeslot was successfully updated.' }
+        format.html { redirect_to timeslots_path, notice: 'Timeslot was successfully updated.' }
+        format.json { render :show, status: :ok, location: @timeslot }
+      else
+        format.html { render :edit }
+        format.json { render json: @timeslot.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /timeslots/1
+  # PATCH/PUT /timeslots/1.json
+  def update_calendar
+    respond_to do |format|
+      if @timeslot.update(timeslot_params)
+        format.html { redirect_to calendar_path, notice: 'Timeslot was successfully updated.' }
         format.json { render :show, status: :ok, location: @timeslot }
       else
         format.html { render :edit }
