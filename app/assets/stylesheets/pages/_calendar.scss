@@ -20,7 +20,7 @@ $break-xs: 576px;
   margin-bottom: 5px;
   margin-top: 10px;
 
-  @media screen and (max-width: $break-small){
+  @media screen and (max-width: $break-xs){
     margin-right: 0px;
     margin-bottom: 10px;
   }
@@ -29,7 +29,7 @@ $break-xs: 576px;
 .calendar_subject_container{
   display: flex;
   align-items: flex-end;
-  @media screen and (max-width: $break-small){
+  @media screen and (max-width: $break-xs){
     display: block;
   }
 }
@@ -39,7 +39,7 @@ $break-xs: 576px;
   background-color: #ffff63;
   border-radius: 5px;
 
-  @media screen and (max-width: $break-small){
+  @media screen and (max-width: $break-xs){
     margin: 10px 0px;
   }
 }
@@ -48,7 +48,7 @@ $break-xs: 576px;
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: $break-small){
+  @media screen and (max-width: $break-xs){
     display: block;
   }
 }
@@ -60,7 +60,7 @@ $break-xs: 576px;
   padding: 5px 5px;
   border-radius: 5px;
 
-  @media screen and (max-width: $break-small){
+  @media screen and (max-width: $break-xs){
     width: 100%;
     margin-bottom: 10px;
     padding: 10px 5px 5px 5px;
