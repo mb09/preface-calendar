@@ -1,6 +1,9 @@
-<h1>Editing Timeslot</h1>
+<div class="calendar_wrapper">
+  <div class="container">
+    <h1>Editing Timeslot</h1>
 
-<%= render 'form', timeslot: @timeslot, :url => timeslot_path %>
-
-<%= link_to 'Show', @timeslot %> |
-<%= link_to 'Back', timeslots_path %>
+    <%= render 'form', timeslot: @timeslot, :url => timeslot_path %>
+    <div class="spacer-40"></div>
+    <%= link_to 'Back', timeslots_path , :class=> "btn btn-primary"%>
+  </div>
+</div>

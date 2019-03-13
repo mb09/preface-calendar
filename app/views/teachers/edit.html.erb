@@ -1,6 +1,12 @@
-<h1>Editing Teacher</h1>
+<div class="calendar_wrapper">
+  <div class="container">
 
-<%= render 'form', teacher: @teacher %>
+    <h1>Editing Teacher</h1>
 
-<%= link_to 'Show', @teacher %> |
-<%= link_to 'Back', teachers_path %>
+    <%= render 'form', teacher: @teacher %>
+    <div class="spacer-40"></div>
+
+    <%= link_to 'Back', teachers_path , :class=> "btn btn-primary"%>
+
+  </div>
+</div>

@@ -4,7 +4,7 @@ class TimeslotsController < ApplicationController
   # GET /timeslots
   # GET /timeslots.json
   def index
-    @timeslots = Timeslot.all
+    @timeslots = Timeslot.all.order("id DESC")
 
     @dow_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   end
@@ -18,6 +18,7 @@ class TimeslotsController < ApplicationController
   # GET /timeslots/new
   def new
     @timeslot = Timeslot.new
+    # @timeslot.start_time = "12:00"
   end
 
   # GET /timeslots/1/edit

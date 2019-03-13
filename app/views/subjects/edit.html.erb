@@ -1,6 +1,10 @@
-<h1>Editing Subject</h1>
+<div class="calendar_wrapper">
+  <div class="container">
 
-<%= render 'form', subject: @subject %>
+    <h1>Editing Subject</h1>
 
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+    <%= render 'form', subject: @subject %>
+    <div class="spacer-40"></div>
+    <%= link_to 'Back', subjects_path, :class=> "btn btn-primary" %>
+  </div>
+</div>

@@ -5,13 +5,12 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :footnote %>
     <%= f.input :subject_string, input_html:{ class: "subjectSelect2", multiple: true }, label: "Learned Coding Languages", collection: @subjects, :label_method => lambda{|subject| subject.name} %>
-
+    <%= f.input :footnote, as: :text, :input_html => {:style => 'width: 100%', :rows => 5} %>
 
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class=> "btn btn-primary" %>
   </div>
 <% end %>

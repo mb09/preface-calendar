@@ -8,10 +8,13 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-// Your CSS partials
-@import "components/index";
-@import "pages/index";
 
 
 @import "flatpickr/dist/themes/dark.css";
 @import "select2/dist/css/select2.min.css";
+
+
+// Your CSS partials
+@import "components/index";
+@import "pages/index";
+@import "layouts/index";

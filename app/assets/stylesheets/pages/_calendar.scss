@@ -1,0 +1,35 @@
+.calendar_wrapper{
+  padding-top: 20px;
+  background-color: #fff;
+  min-height: 800px;
+}
+
+.calendar_teacher{
+  background-color: #cef;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.calendar_subject{
+  margin: -5px 5px 5px 5px;
+  padding: 5px 10px;
+  background-color: #ff8;
+}
+
+.calendar_day{
+  width: 14%;
+  background-color: #fff;
+  text-align: center;
+  padding: 5px 5px;
+}
+
+.calendar_timeslot{
+  margin-bottom: 5px; border: 1px solid #ccc;
+
+  &.available{
+    background-color: #cfc;
+  }
+  &.occupied{
+    background-color: #fcc;
+  }
+}

@@ -1,5 +1,9 @@
-<h1>New Teacher</h1>
+<div class="calendar_wrapper">
+  <div class="container">
+    <h1>New Teacher</h1>
 
-<%= render 'form', teacher: @teacher %>
-
-<%= link_to 'Back', teachers_path %>
+    <%= render 'form', teacher: @teacher %>
+    <div class="spacer-40"></div>
+    <%= link_to 'Back', teachers_path, :class=> "btn btn-primary" %>
+  </div>
+</div>

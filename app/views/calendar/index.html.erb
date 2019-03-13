@@ -1,42 +1,61 @@
-<h1>Calendar</h1>
+<div class="calendar_wrapper">
+  <div class="container">
+    <h1>Calendar</h1>
 
-<% @teachers.each do |teacher| %>
-  <div style="background-color: #cef; margin: 20px; padding: 20px;">
-    <h4><%= teacher.name %></h4>
+    <% @teachers.each do |teacher| %>
+      <div class="calendar_teacher">
+        <h4><%= teacher.name %></h4>
 
-    <div style="display: flex">Subjects:
-    <% @teacher_subjects.select{|a| a.teacher == teacher}.each do |subject| %>
-      <div style="margin: -5px 5px 5px 5px; padding: 5px 10px; background-color: #eee;">
-        <%= subject.subject.name %>
-      </div>
+        <div class="flex">Subjects:
+        <% @teacher_subjects.select{|a| a.teacher == teacher}.each do |subject| %>
+          <div class="calendar_subject">
+            <%= subject.subject.name %>
+          </div>
 
-    <% end %>
-    </div>
-
-    <h5>Timeslots: </h5>
-    <div style="display:flex; justify-content: space-between">
-
-      <% teacher_timeslots = @timeslots.select{|a| a.teacher == teacher} %>
-
-      <% for dow in 0..6 do %>
-
-        <div style="width: 14%; background-color: #f8f8f8; text-align: center; padding: 5px 5px;">
-
-          <% teacher_timeslots_day = teacher_timeslots.select{|a| a.dow == dow} %>
-          <h5><%= @dow_names[dow] %></h5>
-
-          <% teacher_timeslots_day.each do |timeslot| %>
-            <!-- calculate end time, 75minute for a lesson -->
-            <% end_time = timeslot.start_time + 75.minute %>
-
-            <%= link_to edit_calendar_timeslot_path(timeslot) do %>
-              <div style="background-color: #fff; margin-bottom: 5px; border: 1px solid #ccc"><%= timeslot.start_time.strftime("%I:%M%p") %> ~ <%= end_time.strftime("%I:%M%p") %></div>
-            <% end %>
-          <% end %>
-
+        <% end %>
         </div>
 
-      <% end %>
-    </div>
+        <h5>Timeslots: </h5>
+        <div class="flex justify-content-between">
+
+          <% teacher_timeslots = @timeslots.select{|a| a.teacher == teacher} %>
+
+          <% total_timeslot = 0 %>
+          <% available_timeslot = 0 %>
+
+          <% for dow in 0..6 do %>
+
+            <div class="calendar_day">
+
+              <% teacher_timeslots_day = teacher_timeslots.select{|a| a.dow == dow} %>
+              <h5><%= @dow_names[dow] %></h5>
+
+
+              <% teacher_timeslots_day.each do |timeslot| %>
+                <!-- calculate end time, 75minute for a lesson -->
+                <% end_time = timeslot.start_time + 75.minute %>
+
+
+                <% total_timeslot += 1 %>
+                <% if timeslot.state == "Available" %>
+                  <% available_timeslot += 1 %>
+                <% end %>
+
+                <%= link_to edit_calendar_timeslot_path(timeslot) do %>
+                  <div class= "calendar_timeslot <%= timeslot.state == "Available" ? "available" : "occupied" %>"><%= timeslot.start_time.strftime("%I:%M%p") %> ~ <%= end_time.strftime("%I:%M%p") %></div>
+                <% end %>
+              <% end %>
+
+            </div>
+
+
+          <% end %>
+
+
+        </div>
+        <div class="spacer"></div>
+        <h4>Available timeslots : <%= "#{available_timeslot}/#{total_timeslot}" %></h4>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
