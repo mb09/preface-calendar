@@ -9,7 +9,7 @@ $break-xs: 576px;
 }
 
 .calendar_teacher{
-  background-color: #cef;
+  background-color: #b3dde6;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -36,7 +36,7 @@ $break-xs: 576px;
 .calendar_subject{
   margin: -5px 5px 5px 5px;
   padding: 5px 10px;
-  background-color: #ff8;
+  background-color: #ffff63;
   border-radius: 5px;
 
   @media screen and (max-width: $break-small){
@@ -74,9 +74,9 @@ $break-xs: 576px;
   border-radius: 5px;
 
   &.available{
-    background-color: #cfc;
+    background-color: #b5feb5;
   }
   &.occupied{
-    background-color: #fcc;
+    background-color: #fcb6b6;
   }
 }
