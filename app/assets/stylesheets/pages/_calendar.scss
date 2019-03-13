@@ -76,6 +76,9 @@ $break-xs: 576px;
   &.available{
     background-color: #b5feb5;
   }
+  &.reserved{
+    background-color: #fffb83;
+  }
   &.occupied{
     background-color: #fcb6b6;
   }

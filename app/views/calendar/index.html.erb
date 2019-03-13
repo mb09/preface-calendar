@@ -42,7 +42,7 @@
                 <% end %>
 
                 <%= link_to edit_calendar_timeslot_path(timeslot) do %>
-                  <div class= "calendar_timeslot <%= timeslot.state == "Available" ? "available" : "occupied" %>"><%= timeslot.start_time.strftime("%I:%M%p") %><br>~<br><%= end_time.strftime("%I:%M%p") %></div>
+                  <div class= "calendar_timeslot <%= timeslot.state.downcase %>"><%= timeslot.start_time.strftime("%I:%M%p") %><br>~<br><%= end_time.strftime("%I:%M%p") %></div>
                 <% end %>
               <% end %>
             </div>
@@ -50,7 +50,7 @@
 
         </div>
         <div class="spacer"></div>
-        <h4 class="calendar_teacher_big_text">Available timeslots : <%= "#{available_timeslot}/#{total_timeslot}" %></h4>
+        <h4 class="calendar_teacher_big_text">Available time slots : <%= "#{available_timeslot}/#{total_timeslot}" %></h4>
       </div>
     <% end %>
   </div>
