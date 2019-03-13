@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_025306) do
+ActiveRecord::Schema.define(version: 2019_03_13_025836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teacher_subjects", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_teacher_subjects_on_subject_id"
+    t.index ["teacher_id"], name: "index_teacher_subjects_on_teacher_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "footnote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.integer "dow"
+    t.time "start_time"
+    t.string "state"
+    t.string "footnote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_timeslots_on_teacher_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +60,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_025306) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "teacher_subjects", "subjects"
+  add_foreign_key "teacher_subjects", "teachers"
+  add_foreign_key "timeslots", "teachers"
 end
