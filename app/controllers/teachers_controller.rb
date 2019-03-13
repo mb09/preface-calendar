@@ -4,7 +4,7 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.all.order("id ASC")
   end
 
   # GET /teachers/1
@@ -15,15 +15,21 @@ class TeachersController < ApplicationController
   # GET /teachers/new
   def new
     @teacher = Teacher.new
+    @subjects = Subject.all
   end
 
   # GET /teachers/1/edit
   def edit
+    @subjects = Subject.all
   end
 
   # POST /teachers
   # POST /teachers.json
   def create
+    @subjects = Subject.all
+
+    params["teacher"]["subject_string"] = params["teacher"]["subject_string"].select{|str| !str.empty?}.map{|index| @subjects.find(index).name}.join(", ")
+
     @teacher = Teacher.new(teacher_params)
 
     respond_to do |format|
@@ -40,6 +46,26 @@ class TeachersController < ApplicationController
   # PATCH/PUT /teachers/1
   # PATCH/PUT /teachers/1.json
   def update
+    @subjects = Subject.all
+
+    subject_array = params["teacher"]["subject_string"].select{|str| !str.empty?}.map{|index| @subjects.find(index).name}
+
+    params["teacher"]["subject_string"] = subject_array.join(", ")
+
+    existing_teacher_subjects = TeacherSubject.where(:teacher => @teacher)
+    existing_teacher_subjects.each do |old_subject|
+      old_subject.destroy
+    end
+
+    subject_array.each do |new_subject_name|
+      new_subject = TeacherSubject.new
+      new_subject.teacher = @teacher
+      new_subject.subject = @subjects.where(:name => new_subject_name).first
+      new_subject.save
+    end
+
+
+
     respond_to do |format|
       if @teacher.update(teacher_params)
         format.html { redirect_to teachers_path, notice: 'Teacher was successfully updated.' }
@@ -69,6 +95,6 @@ class TeachersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:name, :footnote)
+      params.require(:teacher).permit(:name, :footnote, :subject_string)
     end
 end

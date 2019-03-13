@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_025836) do
+ActiveRecord::Schema.define(version: 2019_03_13_045025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_025836) do
     t.string "footnote"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subject_string"
   end
 
   create_table "timeslots", force: :cascade do |t|
