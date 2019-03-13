@@ -1,3 +1,7 @@
+$break-medium: 994px;
+$break-small: 768px;
+$break-xs: 576px;
+
 .calendar_wrapper{
   padding-top: 20px;
   background-color: #fff;
@@ -9,11 +13,29 @@
   padding: 20px;
   margin-bottom: 20px;
 }
-
+.calendar_subject_container{
+  display: flex;
+  @media screen and (max-width: $break-xs){
+    display: block;
+  }
+}
 .calendar_subject{
   margin: -5px 5px 5px 5px;
   padding: 5px 10px;
   background-color: #ff8;
+
+  @media screen and (max-width: $break-xs){
+    margin: 10px 0px;
+  }
+}
+
+.calendar_week{
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: $break-xs){
+    display: block;
+  }
 }
 
 .calendar_day{
@@ -21,6 +43,12 @@
   background-color: #fff;
   text-align: center;
   padding: 5px 5px;
+
+  @media screen and (max-width: $break-xs){
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 5px 5px 5px;
+  }
 }
 
 .calendar_timeslot{

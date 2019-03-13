@@ -4,9 +4,9 @@
 
     <% @teachers.each do |teacher| %>
       <div class="calendar_teacher">
-        <h4><%= teacher.name %></h4>
+        <h3><%= teacher.name %></h3>
 
-        <div class="flex">Subjects:
+        <div class="calendar_subject_container">Subjects:
         <% @teacher_subjects.select{|a| a.teacher == teacher}.each do |subject| %>
           <div class="calendar_subject">
             <%= subject.subject.name %>
@@ -16,7 +16,7 @@
         </div>
 
         <h5>Timeslots: </h5>
-        <div class="flex justify-content-between">
+        <div class="calendar_week">
 
           <% teacher_timeslots = @timeslots.select{|a| a.teacher == teacher} %>
 

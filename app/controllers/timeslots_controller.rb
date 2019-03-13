@@ -18,15 +18,16 @@ class TimeslotsController < ApplicationController
   # GET /timeslots/new
   def new
     @timeslot = Timeslot.new
-    # @timeslot.start_time = "12:00"
   end
 
   # GET /timeslots/1/edit
   def edit
+    @timeslot.start_time = @timeslot.start_time.strftime("%H:%M")
   end
 
   # GET /timeslots/1/edit
   def edit_calendar
+    @timeslot.start_time = @timeslot.start_time.strftime("%H:%M")
   end
 
   # POST /timeslots
