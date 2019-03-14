@@ -6,7 +6,6 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= @teacher.subject_string %>
     <%= f.input :subject_string, input_html:{ class: "subjectSelect2", multiple: true }, label: "Available Subjects", collection: @subjects, :label_method => lambda{|subject| subject.name} %>
     <%= f.input :footnote, as: :text, :input_html => {:style => 'width: 100%', :rows => 5} %>
 
