@@ -4,23 +4,32 @@ $break-xs: 576px;
 
 .calendar_wrapper{
   padding: 20px 0px;
-  background-color: #fff;
+  background-color: #F3FBFF;
   min-height: 800px;
+
+  a:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+  a:select{
+    color: #fff;
+  }
 }
 
 .calendar_teacher{
-  background-color: #b3dde6;
+  background-color: #9dcfdb;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
 }
 
 .calendar_teacher_big_text{
-  margin-right: 10px;
+  margin-right: 5px;
   margin-bottom: 5px;
   margin-top: 10px;
 
   @media screen and (max-width: $break-xs){
+    width: 100%;
     margin-right: 0px;
     margin-bottom: 10px;
   }
@@ -29,18 +38,22 @@ $break-xs: 576px;
 .calendar_subject_container{
   display: flex;
   align-items: flex-end;
+  flex-wrap: wrap;
   @media screen and (max-width: $break-xs){
-    display: block;
+    // display: block;
   }
 }
 .calendar_subject{
   margin: -5px 5px 5px 5px;
   padding: 5px 10px;
-  background-color: #ffff63;
+  background-color: #e6ff00;
   border-radius: 5px;
+  overflow-wrap: break-word;
 
   @media screen and (max-width: $break-xs){
-    margin: 10px 0px;
+    margin: 0px 5px 5px 0px;
+    // width: 40%;
+
   }
 }
 
@@ -57,29 +70,53 @@ $break-xs: 576px;
   width: 14%;
   background-color: #fff;
   text-align: center;
-  padding: 5px 5px;
+  padding-top: 5px;
   border-radius: 5px;
 
   @media screen and (max-width: $break-xs){
     width: 100%;
     margin-bottom: 10px;
     padding: 10px 5px 5px 5px;
+
+    &.empty{
+      display: none;
+    }
   }
 }
 
+.calendar_timeslot_container{
+
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: $break-xs){
+    flex-direction: row;
+    flex-wrap: wrap;
+    a{
+      width: 33.333333%;
+    }
+  }
+
+}
+
 .calendar_timeslot{
-  margin-bottom: 5px; border: 1px solid #ccc;
+  margin: 0px 5px 5px 5px;
   line-height: 90%;
   padding: 5px 0px;
   border-radius: 5px;
+  overflow-wrap: break-word;
 
   &.available{
-    background-color: #b5feb5;
+    background-color: #74E0D4;
   }
   &.reserved{
-    background-color: #fffb83;
+    background-color: #ff9933;
   }
   &.occupied{
-    background-color: #fcb6b6;
+    background-color: #ff245e;
+  }
+  @media screen and (max-width: $break-xs){
+
+    margin: 5px 5px 5px 5px;
   }
 }

@@ -21,6 +21,9 @@ class TeachersController < ApplicationController
   # GET /teachers/1/edit
   def edit
     @subjects = Subject.all
+    old_subjects = @teacher.subject_string.split(", ");
+    @teacher.subject_string = old_subjects
+
   end
 
   # POST /teachers

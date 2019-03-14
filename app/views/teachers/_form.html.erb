@@ -1,11 +1,13 @@
 
+
 <%= simple_form_for(@teacher) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :subject_string, input_html:{ class: "subjectSelect2", multiple: true }, label: "Learned Coding Languages", collection: @subjects, :label_method => lambda{|subject| subject.name} %>
+    <%= @teacher.subject_string %>
+    <%= f.input :subject_string, input_html:{ class: "subjectSelect2", multiple: true }, label: "Available Subjects", collection: @subjects, :label_method => lambda{|subject| subject.name} %>
     <%= f.input :footnote, as: :text, :input_html => {:style => 'width: 100%', :rows => 5} %>
 
   </div>

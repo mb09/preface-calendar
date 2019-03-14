@@ -1,6 +1,6 @@
 <div class="calendar_wrapper">
   <div class="container">
-    <h1>Calendar</h1>
+    <h1>Teachers Availability</h1>
 
     <% @teachers.each do |teacher| %>
       <div class="calendar_teacher">
@@ -25,27 +25,30 @@
 
           <% for dow in 0..6 do %>
 
-            <div class="calendar_day">
 
-              <% teacher_timeslots_day = teacher_timeslots.select{|a| a.dow == dow} %>
+            <% teacher_timeslots_day = teacher_timeslots.select{|a| a.dow == dow} %>
+
+            <div class="calendar_day <%= teacher_timeslots_day.empty? ? "empty":"" %>">
               <h5 class="font-strong"><%= @dow_names[dow] %></h5>
 
+              <div class="calendar_timeslot_container">
+                <% teacher_timeslots_day.each do |timeslot| %>
+                  <!-- calculate end time, 75minute for a lesson -->
+                  <% end_time = timeslot.start_time + 75.minute %>
 
-              <% teacher_timeslots_day.each do |timeslot| %>
-                <!-- calculate end time, 75minute for a lesson -->
-                <% end_time = timeslot.start_time + 75.minute %>
 
+                  <% total_timeslot += 1 %>
+                  <% if timeslot.state == "Available" %>
+                    <% available_timeslot += 1 %>
+                  <% end %>
 
-                <% total_timeslot += 1 %>
-                <% if timeslot.state == "Available" %>
-                  <% available_timeslot += 1 %>
+                  <%= link_to edit_calendar_timeslot_path(timeslot) do %>
+                    <div class= "calendar_timeslot <%= timeslot.state.downcase %>"><%= timeslot.start_time.strftime("%H:%M") %><br>~<br><%= end_time.strftime("%H:%M") %></div>
+                  <% end %>
                 <% end %>
-
-                <%= link_to edit_calendar_timeslot_path(timeslot) do %>
-                  <div class= "calendar_timeslot <%= timeslot.state.downcase %>"><%= timeslot.start_time.strftime("%I:%M%p") %><br>~<br><%= end_time.strftime("%I:%M%p") %></div>
-                <% end %>
-              <% end %>
+              </div>
             </div>
+
           <% end %>
 
         </div>
