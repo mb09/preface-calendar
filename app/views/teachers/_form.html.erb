@@ -6,7 +6,14 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :subject_string, input_html:{ class: "subjectSelect2", multiple: true }, label: "Available Subjects", collection: @subjects, :label_method => lambda{|subject| subject.name} %>
+
+    <% existing_subjects = [] %>
+
+    <% TeacherSubject.where("teacher"=>@teacher).each do |ts| %>
+      <% existing_subjects << ts.subject.id %>
+    <% end %>
+
+    <%= f.input :subject_string, input_html:{ class: "subjectSelect2", multiple: true }, label: "Available Subjects", collection: @subjects, :label_method => lambda{|subject| subject.name}, selected: existing_subjects %>
     <%= f.input :footnote, as: :text, :input_html => {:style => 'width: 100%', :rows => 5} %>
 
   </div>
